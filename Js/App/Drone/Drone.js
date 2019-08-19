@@ -17,7 +17,7 @@ class Drone{
 
   SetupControls(){
     //Set speed
-    this.Speed = 10;
+    this.Speed = 1.7;
 
     //Setup button
     this.Buttons = {
