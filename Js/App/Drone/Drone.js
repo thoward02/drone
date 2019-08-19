@@ -73,21 +73,25 @@ class Drone{
     //Forward
     if(Buttons.w == 1){
       window.App.Drone.Model.position.z -= window.App.Drone.Speed;
+      window.App.Camera.position.z -= window.App.Drone.Speed;
     }
 
     //Backward
     if(Buttons.s == 1){
       window.App.Drone.Model.position.z += window.App.Drone.Speed;
+      window.App.Camera.position.z += window.App.Drone.Speed;
     }
 
     //Left
     if(Buttons.a == 1){
       window.App.Drone.Model.position.x -= window.App.Drone.Speed;
+      window.App.Camera.position.x -= window.App.Drone.Speed;
     }
 
     //Right
     if(Buttons.d == 1){
       window.App.Drone.Model.position.x += window.App.Drone.Speed;
+      window.App.Camera.position.x += window.App.Drone.Speed;
     }
 
 
@@ -95,11 +99,13 @@ class Drone{
     //Up
     if(Buttons[" "] == 1){
       window.App.Drone.Model.position.y += window.App.Drone.Speed;
+      window.App.Camera.position.y += window.App.Drone.Speed;
     }
 
     //Down
     if(Buttons.shift == 1){
       window.App.Drone.Model.position.y -= window.App.Drone.Speed;
+      window.App.Camera.position.y -= window.App.Drone.Speed;
     }
 
 
