@@ -131,7 +131,7 @@ class Drone{
     this.UpdatePosition();
 
     //Update drone stats
-    document.getElementById("DroneSpeed").innerHTML = "Y Position : " + Math.round(window.App.Drone.Model.position.y * 100) / 100;
+    document.getElementById("Stats-DroneSpeed").innerHTML = "Y Position : " + Math.round(window.App.Drone.Model.position.y * 100) / 100;
 
   }
 
