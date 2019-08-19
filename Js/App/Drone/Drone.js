@@ -4,7 +4,7 @@ class Drone{
     //Build object
     this.Geo   = new THREE.BoxGeometry(1, 0.5, 1);
     this.Mat   = new THREE.MeshPhongMaterial({
-      color: 0x000000,
+      color: 0x7FFFD4,
       emissive: 0x3a3a3a
     });
     this.Model = new THREE.Mesh(this.Geo, this.Mat);

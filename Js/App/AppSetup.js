@@ -7,7 +7,7 @@ class App{
     //Setup renderer
     this.Renderer = new THREE.WebGLRenderer();
     this.Scene    = new THREE.Scene();
-    this.Camera   = new THREE.PerspectiveCamera(75, this.Config.CanvasWidth / this.Config.CanvasHeight, 0.1, 1000);
+    this.Camera   = new THREE.PerspectiveCamera(75, this.Config.CanvasWidth / this.Config.CanvasHeight, 0.1, 100);
 
     //Flesh out renderer
     this.Renderer.setSize(this.Config.CanvasWidth, this.Config.CanvasHeight);
@@ -109,14 +109,24 @@ class App{
     //Setup Scene fog
     const FogColour = 'lightblue';  // white
     const FogN = 1;
-    const FogF = 2;
+    const FogF = 100;
     this.Scene.fog = new THREE.Fog(FogColour, FogN, FogF)
 
+    //Add base light
+    const color = 0xFFFFFF;
+    const intensity = 1;
+    const light = new THREE.DirectionalLight(color, intensity);
+    light.position.set(0, 2, -4);
+    this.Scene.add(light);
 
     //Build Floor
-    let GSize = 100;
+    let GSize      = 100;
     let GDivisions = 100;
     let Grid = new THREE.GridHelper(GSize, GDivisions);
+
+    //Create and append colour
+    let GColour    = 0x000000;
+    Grid.Colour    = GColour;
 
     //Append floor
     this.Scene.add(Grid);
