@@ -2,7 +2,7 @@
 window.Start = function(){
   //Calculate canvas with and height
   let CanavsWidth  = window.innerWidth;
-  let CanvasHeight = window.innerHeight * 0.9;
+  let CanvasHeight = window.innerHeight;
 
   //Setup Config
   let Config = {
