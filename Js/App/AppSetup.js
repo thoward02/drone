@@ -36,7 +36,7 @@ class App{
     window.App.Renderer.render(window.App.Scene, window.App.Camera);
 
     //Update
-    for(var Objects in window.App.ToUpdate){
+    for(let Objects in window.App.ToUpdate){
       window.App.ToUpdate[Objects].Update();
     }
   }
@@ -51,12 +51,60 @@ class App{
     this.Animate();
   }
 
+  CreateSky(){
+    //Create Sky
+    this.Sky = new THREE.Sky();
+    this.Sky.scale.setScalar( 450000 );
+
+    // Add Sun
+		let Sun = new THREE.Mesh(
+			new THREE.SphereBufferGeometry( 20000, 16, 8 ),
+			new THREE.MeshBasicMaterial( { color: 0xffffff } )
+		);
+		Sun.position.y = - 700000;
+		Sun.visible = false;
+
+		//Modify sky
+		let EffectControler = {
+			turbidity: 10,
+			rayleigh: 2,
+			mieCoefficient: 0.005,
+			mieDirectionalG: 0.8,
+			luminance: 1,
+			inclination: 0.49, // elevation / inclination
+			azimuth: 0.25, // Facing front,
+			sun: ! true
+		};
+		let distance = 400000;
+
+    //Bind modifications
+    let Uniforms = this.Sky.material.uniforms;
+		Uniforms[ "turbidity" ].value = EffectControler.turbidity;
+		Uniforms[ "rayleigh" ].value = EffectControler.rayleigh;
+		Uniforms[ "luminance" ].value = EffectControler.luminance;
+		Uniforms[ "mieCoefficient" ].value = EffectControler.mieCoefficient;
+		Uniforms[ "mieDirectionalG" ].value = EffectControler.mieDirectionalG;
+		let theta = Math.PI * ( EffectControler.inclination - 0.5 );
+		let phi = 2 * Math.PI * ( EffectControler.azimuth - 0.5 );
+		Sun.position.x = distance * Math.cos( phi );
+		Sun.position.y = distance * Math.sin( phi ) * Math.sin( theta );
+		Sun.position.z = distance * Math.sin( phi ) * Math.cos( theta );
+		Sun.visible = EffectControler.sun;
+		Uniforms[ "sunPosition" ].value.copy( Sun.position );
+
+    this.Scene.add(this.Sky);
+    this.Scene.add(Sun);
+  }
+
   CreateScene(){
     //Build Drone
     this.Drone = new Drone();
     this.Scene.add(this.Drone.Model);
+
     //Add drone to update list
     this.ToUpdate[this.ToUpdate.length] = this.Drone;
+
+    this.CreateSky();
 
     //Build Floor
     let geometry = new THREE.BoxGeometry(10, 0.1, 10);
