@@ -110,7 +110,7 @@ class Drone{
 
     //Down
     if(Buttons.shift == 1){
-      window.App.Drone.Reposition("y", window.App.Drone.Speed);
+      window.App.Drone.Reposition("y", -window.App.Drone.Speed);
 
     }
 
