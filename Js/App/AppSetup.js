@@ -106,14 +106,20 @@ class App{
 
     this.CreateSky();
 
+    //Setup Scene fog
+    const FogColour = 'lightblue';  // white
+    const FogN = 1;
+    const FogF = 2;
+    this.Scene.fog = new THREE.Fog(FogColour, FogN, FogF)
+
+
     //Build Floor
-    let geometry = new THREE.BoxGeometry(10, 0.1, 10);
-    let material = new THREE.MeshBasicMaterial({color: 0x00ff00});
-    let Floor     = new THREE.Mesh(geometry, material);
+    let GSize = 100;
+    let GDivisions = 100;
+    let Grid = new THREE.GridHelper(GSize, GDivisions);
 
-
-    //Append shape
-    this.Scene.add(Floor);
+    //Append floor
+    this.Scene.add(Grid);
 
     //Set camera pos so we can see it
     this.Camera.position.z = 5;

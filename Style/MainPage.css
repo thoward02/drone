@@ -2,6 +2,13 @@
   height: 5%;
   width:  100%;
 
+  font-family: "Azonix";
+  font-size: 50px;
+  letter-spacing: 10px;
+
+  color: cyan;
+  background-color: black;
+
   text-align: center;
 
 }
@@ -24,4 +31,14 @@ body{
   height: 100%;
 
   margin: 0;
+}
+
+
+@font-face{
+  font-family : "Azonix";
+  src : url("Azonix.otf");
+}
+@font-face{
+  font-family : "Arkhip";
+  src : url("Arkhip_font.otf");
 }
