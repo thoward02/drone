@@ -65,7 +65,7 @@ class Drone{
     window.App.Camera.position.y = 3;
   }
 
-  Update(){
+  UpdatePosition(){
     //Add effect of grav
     window.App.Drone.Model.position.y -= 0.0981 * window.Delta;
     window.App.Camera.position.y      -= 0.0981 * window.Delta;
@@ -119,6 +119,15 @@ class Drone{
     if(window.App.Camera.position.y <= 0.1){
       window.App.Drone.HitFloor();
     }
+
+  }
+
+  Update(){
+    //Update drone pos
+    this.UpdatePosition();
+
+    //Update drone stats
+    document.getElementById("DroneSpeed").innerHTML = "Y Position : " + Math.round(window.App.Drone.Model.position.y * 100) / 100;
 
   }
 
