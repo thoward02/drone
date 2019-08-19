@@ -113,11 +113,9 @@ class App{
     this.Scene.fog = new THREE.Fog(FogColour, FogN, FogF)
 
     //Add base light
-    const color = 0xFFFFFF;
-    const intensity = 1;
-    const light = new THREE.DirectionalLight(color, intensity);
-    light.position.set(0, 2, -4);
-    this.Scene.add(light);
+    const Light = new THREE.DirectionalLight(0xFFFFFF, 1);
+    Light.position.set(0, 2, -4);
+    this.Scene.add(Light);
 
     //Build Floor
     let GSize      = 100;

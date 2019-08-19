@@ -17,7 +17,7 @@ class Drone{
 
   SetupControls(){
     //Set speed
-    this.Speed = 1.7;
+    this.Speed = 1.75;
 
     //Setup button
     this.Buttons = {
@@ -62,11 +62,13 @@ class Drone{
 
   HitFloor(){
     window.App.Drone.Model.position.y = 0.15;
+    window.App.Camera.position.y = 3;
   }
 
   Update(){
     //Add effect of grav
     window.App.Drone.Model.position.y -= 0.0981 * window.Delta;
+    window.App.Camera.position.y      -= 0.0981 * window.Delta;
     //Get button pressed
     let Buttons = window.App.Drone.Buttons;
 
@@ -111,6 +113,10 @@ class Drone{
 
     //Check and see if it hit the floor
     if(window.App.Drone.Model.position.y <= 0.1){
+      window.App.Drone.HitFloor();
+    }
+
+    if(window.App.Camera.position.y <= 0.1){
       window.App.Drone.HitFloor();
     }
 
