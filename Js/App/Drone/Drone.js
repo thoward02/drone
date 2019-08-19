@@ -60,6 +60,11 @@ class Drone{
 
   }
 
+  Reposition(Direction, Val){
+    window.App.Drone.Model.position[Direction] += Val;
+    window.App.Camera.position[Direction]      += Val;
+  }
+
   HitFloor(){
     window.App.Drone.Model.position.y = 0.15;
     window.App.Camera.position.y = 3;
@@ -74,40 +79,39 @@ class Drone{
 
     //Forward
     if(Buttons.w == 1){
-      window.App.Drone.Model.position.z -= window.App.Drone.Speed;
-      window.App.Camera.position.z -= window.App.Drone.Speed;
+      window.App.Drone.Reposition("z", -window.App.Drone.Speed);
     }
 
     //Backward
     if(Buttons.s == 1){
-      window.App.Drone.Model.position.z += window.App.Drone.Speed;
-      window.App.Camera.position.z += window.App.Drone.Speed;
+      window.App.Drone.Reposition("z", window.App.Drone.Speed);
+
     }
 
     //Left
     if(Buttons.a == 1){
-      window.App.Drone.Model.position.x -= window.App.Drone.Speed;
-      window.App.Camera.position.x -= window.App.Drone.Speed;
+      window.App.Drone.Reposition("x", -window.App.Drone.Speed);
+
     }
 
     //Right
     if(Buttons.d == 1){
-      window.App.Drone.Model.position.x += window.App.Drone.Speed;
-      window.App.Camera.position.x += window.App.Drone.Speed;
+      window.App.Drone.Reposition("x", window.App.Drone.Speed);
+
     }
 
 
 
     //Up
     if(Buttons[" "] == 1){
-      window.App.Drone.Model.position.y += window.App.Drone.Speed;
-      window.App.Camera.position.y += window.App.Drone.Speed;
+      window.App.Drone.Reposition("y", window.App.Drone.Speed);
+
     }
 
     //Down
     if(Buttons.shift == 1){
-      window.App.Drone.Model.position.y -= window.App.Drone.Speed;
-      window.App.Camera.position.y -= window.App.Drone.Speed;
+      window.App.Drone.Reposition("y", window.App.Drone.Speed);
+
     }
 
 
