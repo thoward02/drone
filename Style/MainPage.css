@@ -37,7 +37,7 @@
   z-index: 2;
 
   height: 42.5%;
-  width:  15%;
+  width:  20%;
 
   margin-top:  25%;
 
@@ -60,7 +60,7 @@
   font-family: Kiona;
 }
 
-#Stats-DroneSpeed{
+#Stats-Text{
   margin-top: 10%;
   margin-left: 5%;
 
@@ -70,6 +70,11 @@
   letter-spacing: 5px;
 
   font-family: Kiona;
+}
+
+#Stats-DroneSlider{
+  width: 50%;
+
 }
 
 body{

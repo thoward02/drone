@@ -17,8 +17,9 @@ class Drone{
 
   SetupControls(){
     //Set speed
-    this.Speed = 1.75;
-
+    this.Speed     = 0;
+    this.YSpeed    = 0;
+    this.SpeedMult = 0.2;
     //Setup button
     this.Buttons = {
       "w"       : 0,
@@ -104,15 +105,22 @@ class Drone{
 
     //Up
     if(Buttons[" "] == 1){
-      window.App.Drone.Reposition("y", window.App.Drone.Speed);
-
+      //window.App.Drone.Reposition("y", window.App.Drone.Speed);
+      window.App.Drone.YSpeed += window.App.Drone.SpeedMult;
     }
 
     //Down
     if(Buttons.shift == 1){
-      window.App.Drone.Reposition("y", -window.App.Drone.Speed);
-
+      window.App.Drone.YSpeed -= window.App.Drone.SpeedMult;
     }
+
+    if(window.App.Drone.SpeedMult != 0){
+      console.log(window.App.Drone.SpeedMult)
+      window.App.Drone.YSpeed += window.App.Drone.SpeedMult;
+      window.App.Drone.Reposition("y", window.App.Drone.YSpeed);
+    }
+
+
 
 
     //Check and see if it hit the floor
@@ -131,7 +139,8 @@ class Drone{
     this.UpdatePosition();
 
     //Update drone stats
-    document.getElementById("Stats-DroneSpeed").innerHTML = "Y Position : " + Math.round(window.App.Drone.Model.position.y * 100) / 100;
+    document.getElementById("Stats-DroneLocation").innerHTML = "Y Position : " + Math.round(window.App.Drone.Model.position.y * 100) / 100;
+    document.getElementById("Stats-DroneSpeed").innerHTML    = "Y Speed : " + (Math.round(window.App.Drone.YSpeed * 100) / 100) + " U/S";
 
   }
 

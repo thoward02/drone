@@ -101,6 +101,20 @@ class App{
     this.Drone = new Drone();
     this.Scene.add(this.Drone.Model);
 
+    /** Setup drone slider **/
+    document.getElementById("Stats-DroneSlider").oninput = function(){
+      let nvalue = this.value;
+
+      if(nvalue < 50){
+          nvalue = -nvalue;
+      }
+
+      nvalue = nvalue / 100;
+
+      window.App.Drone.SpeedMult = nvalue;
+    }
+
+
     //Add drone to update list
     this.ToUpdate[this.ToUpdate.length] = this.Drone;
 
