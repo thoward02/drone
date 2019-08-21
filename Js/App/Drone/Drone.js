@@ -15,11 +15,38 @@ class Drone{
 
   }
 
+  SetupDroneControls(){
+    //Setup slider
+    document.getElementById("Stats-DroneSlider").oninput = function(){
+      let nvalue = parseInt(this.value);
+
+      if(nvalue < 50){
+          nvalue = -100 + nvalue;
+          nvalue = nvalue / 100;
+
+      }else{
+        nvalue = nvalue / 100;
+      }
+
+
+      if(nvalue != 0.50){
+        window.App.Drone.SpeedMult = nvalue;
+      }
+    }
+
+    //When user lets go of slider, reset it's pos and reset the speed multiplier
+    document.getElementById("Stats-DroneSlider").onmouseup = function(){
+      this.value = 50;
+      window.App.Drone.SpeedMult = 0;
+    }
+
+  }
+
   SetupControls(){
     //Set speed
     this.Speed     = 0;
     this.YSpeed    = 0;
-    this.SpeedMult = 0.2;
+    this.SpeedMult = 0.0;
     //Setup button
     this.Buttons = {
       "w"       : 0,
@@ -57,13 +84,18 @@ class Drone{
     }
 
 
-
-
   }
 
   Reposition(Direction, Val){
-    window.App.Drone.Model.position[Direction] += Val;
-    window.App.Camera.position[Direction]      += Val;
+    //Get hard values
+    let ComputedVal = Val * (window.Delta / 1000);
+    let GravEffect = 0.981 * (window.Delta / 1000);
+
+    //If gravity over powers the movement, don't bother
+    if((ComputedVal - GravEffect) >= 0){
+      window.App.Drone.Model.position[Direction] += ComputedVal;
+      window.App.Camera.position[Direction]      += ComputedVal;
+    }
   }
 
   HitFloor(){
@@ -73,8 +105,20 @@ class Drone{
 
   UpdatePosition(){
     //Add effect of grav
-    window.App.Drone.Model.position.y -= 0.0981 * window.Delta;
-    window.App.Camera.position.y      -= 0.0981 * window.Delta;
+    let GravEffect = 0.981 * (window.Delta / 1000);
+
+    //If below the limit of G, just have it hit the floor
+    if(window.App.Drone.Model.position.y <= 0.15){
+      window.App.Drone.HitFloor();
+    }
+
+    //Else just have it drop due to G
+    else {
+      window.App.Drone.Model.position.y -= GravEffect;
+      window.App.Camera.position.y      -= GravEffect;
+    }
+
+    /** BUTTON CONTROL
     //Get button pressed
     let Buttons = window.App.Drone.Buttons;
 
@@ -113,12 +157,12 @@ class Drone{
     if(Buttons.shift == 1){
       window.App.Drone.YSpeed -= window.App.Drone.SpeedMult;
     }
+    **/
+    //Apply speed
+    window.App.Drone.YSpeed += (window.App.Drone.SpeedMult * (window.Delta / 1000));
+    window.App.Drone.Reposition("y", window.App.Drone.YSpeed);
 
-    if(window.App.Drone.SpeedMult != 0){
-      console.log(window.App.Drone.SpeedMult)
-      window.App.Drone.YSpeed += window.App.Drone.SpeedMult;
-      window.App.Drone.Reposition("y", window.App.Drone.YSpeed);
-    }
+
 
 
 
