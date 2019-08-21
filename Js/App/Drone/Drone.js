@@ -44,6 +44,11 @@ class Drone{
       window.App.Drone.YSpeed =  0.981;
     }
 
+    //Kill drone button
+    document.getElementById("DroneCont-KillDrone").onclick = function(){
+      window.App.Drone.YSpeed = 0;
+    }
+
   }
 
   SetupControls(){
