@@ -13,7 +13,9 @@
 
     <!-- Styles -->
     <link href="./Style/MainPage.css" rel="stylesheet" type="text/css"></link>
+    <link href="./Style/DroneControl.css" rel="stylesheet" type="text/css"></link>
   </head>
+  <body>
 
   <div id="App-Container">
 
@@ -29,14 +31,16 @@
       <div id="Stats-Text">
         <div id="Stats-DroneSpeed"></div>
         <div id="Stats-DroneLocation"></div>
-        <div class="Stats-DroneControl">
-          <input type="range" min="0" max="100" value="50" id="Stats-DroneSlider">
-          <button id="Stats-StartDrone">Start</button>
+        <div class="DroneCont-DroneControl">
+          <input id="DroneCont-DroneSlider" type="range" min="0" max="100" value="50">
+          <button id="DroneCont-StartDrone">Start</button>
+          <button id="DroneCont-KillDrone">Kill Engine</button>
         </div>
       </div>
     </div>
 
   </div>
 
+</body>
 
 </html>

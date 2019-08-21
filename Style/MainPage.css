@@ -40,6 +40,7 @@
   width:  20%;
 
   margin-top:  25%;
+  margin-left:  1%;
 
   background: linear-gradient(rgba(64,224,208, 0.8), rgba(0,255,255, 0.2));
 
@@ -51,7 +52,7 @@
 
   background-color: rgba(64,224,208, 0.95);
 
-  color: cyan;
+  color: rgb(40, 133, 123);
   font-size: 40px;
   letter-spacing: 10px;
 
@@ -72,10 +73,6 @@
   font-family: Kiona;
 }
 
-#Stats-DroneSlider{
-  width: 50%;
-
-}
 
 body{
   width: 100%;

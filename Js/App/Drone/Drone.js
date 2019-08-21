@@ -17,7 +17,7 @@ class Drone{
 
   SetupDroneControls(){
     //Setup slider
-    document.getElementById("Stats-DroneSlider").oninput = function(){
+    document.getElementById("DroneCont-DroneSlider").oninput = function(){
       let nvalue = parseInt(this.value);
 
       if(nvalue < 50){
@@ -35,7 +35,7 @@ class Drone{
     }
 
     //When user lets go of slider, reset it's pos and reset the speed multiplier
-    document.getElementById("Stats-DroneSlider").onmouseup = function(){
+    document.getElementById("DroneCont-DroneSlider").onmouseup = function(){
       //Set vars
       this.value = 50;
 

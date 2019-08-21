@@ -1,0 +1,41 @@
+#DroneCont-DroneSlider{
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+
+  margin-top: 10%;
+
+  width: 90%;
+  height: 3%;
+
+  border-radius: 25px;
+
+  outline: none;
+  background: rgba(35, 255, 236, 0.6);
+}
+
+#DroneCont-DroneSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background: rgba(135, 255, 245, 0.6);
+}
+
+
+#DroneCont-KillDrone, #DroneCont-StartDrone{
+  border: none;
+
+  width: 90%;
+  height: 10%;
+
+  margin-top: 10%;
+
+  color: rgb(40, 133, 123);
+  font-family: Kiona;
+
+  background: linear-gradient(rgba(64,224,208, 0.8), rgba(64,224,208, 0.75));
+
+
+
+}
