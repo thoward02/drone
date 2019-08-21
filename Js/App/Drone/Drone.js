@@ -36,8 +36,12 @@ class Drone{
 
     //When user lets go of slider, reset it's pos and reset the speed multiplier
     document.getElementById("Stats-DroneSlider").onmouseup = function(){
+      //Set vars
       this.value = 50;
+
+      //Apply drone changes
       window.App.Drone.SpeedMult = 0;
+      window.App.Drone.YSpeed =  0.981;
     }
 
   }
@@ -161,10 +165,6 @@ class Drone{
     //Apply speed
     window.App.Drone.YSpeed += (window.App.Drone.SpeedMult * (window.Delta / 1000));
     window.App.Drone.Reposition("y", window.App.Drone.YSpeed);
-
-
-
-
 
 
     //Check and see if it hit the floor
